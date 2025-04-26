@@ -2,12 +2,6 @@
 
 @section('content')
 <div class="container">
-    <div class="row mb-4">
-        <div class="col-12">
-            <h1 class="mb-4">Dashboard</h1>
-        </div>
-    </div>
-
     <!-- Monthly Metrics -->
     <div class="row mb-4">
         <div class="col-12">

@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h3>Editar chamado</h3>
+                    <h3 class="float-left text-xl">Editar chamado</h3>
                 </div>
 
                 <div class="card-body">
@@ -14,7 +14,7 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="form-group row">
+                        <div class="form-group row m-3">
                             <label for="title" class="col-md-4 col-form-label text-md-right">Título</label>
                             <div class="col-md-6">
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title', $order->title) }}" required autofocus>
@@ -26,7 +26,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row m-3">
                             <label for="category_id" class="col-md-4 col-form-label text-md-right">Categoria</label>
                             <div class="col-md-6">
                                 <select id="category_id" class="form-control @error('category_id') is-invalid @enderror" name="category_id" required>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row m-3">
                             <label for="status_id" class="col-md-4 col-form-label text-md-right">Status</label>
                             <div class="col-md-6">
                                 <select id="status_id" class="form-control @error('status_id') is-invalid @enderror"  name="status_id" required>
@@ -60,7 +60,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row m-3">
                             <label for="due_date" class="col-md-4 col-form-label text-md-right">Prazo</label>
                             <div class="col-md-6">
                                 <input id="due_date" type="date" class="form-control @error('due_date') is-invalid @enderror" name="due_date" value="{{ old('due_date', $order->due_date) }}">
@@ -72,7 +72,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mb-0 mt-5">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     Atualizar

@@ -2,13 +2,13 @@
 @extends('layouts.app')
 
 @section('content')
-<script src="https://cdn.tailwindcss.com"></script>
 <div class="container">
+
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header" style="display: flex;  justify-content: space-between;">
-                    <h3 class="float-left"> <i class="bi bi-list-check"></i> Chamados</h3>
+                <div class="card-header">
+                    <h3 class="float-left text-xl mt-1.5"> <i class="bi bi-list-check"></i> Chamados</h3>
                     <a href="{{ route('orders.create') }}" class="btn btn-primary float-right">+ Novo</a>
                 </div>
 
