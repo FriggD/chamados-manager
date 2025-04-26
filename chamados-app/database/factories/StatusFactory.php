@@ -25,7 +25,7 @@ class StatusFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->randomElement(['Pendente', 'Resolvido']),
+            'name' => $this->faker->randomElement(['Novo', 'Pendente', 'Resolvido']),
         ];
     }
 }

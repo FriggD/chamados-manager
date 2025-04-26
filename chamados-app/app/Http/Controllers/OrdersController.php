@@ -33,22 +33,39 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        $status_pendente = Status::where('name', 'Pendente')->firstOrFail();
+        $status_novo = Status::where('name', 'Novo')->firstOrFail();
 
         $request->validate([
             'title' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
-            'due_date' => 'nullable|date',
-            'solution_date' => 'nullable|date',
+            'status_id' => 'nullable|exists:status,id',
+            'due_date' => 'nullable|date'
         ]);
 
-        Orders::create($request->all(), [
-            'status_id' => $status_pendente->id,
-            'solution_date' => null
+        $data = $request->all();
+        $data['status_id'] = $data['status_id'] ?? $status_novo->id;
+        $data['due_date'] = $data['due_date'] ?? now()->addDays(3);
+
+        Orders::create($data);
+
+        return redirect()->route('orders.index')
+            ->with('success', 'Chamado criado!');
+    }
+
+    /**
+     * Set the state to "Resolvido" and set the solved date
+     */
+    public function complete(Request $request, Orders $order)
+    {
+        $status_resolvido = Status::where('name', 'Resolvido')->firstOrFail();
+
+        $order->update([
+            'status_id' => $status_resolvido->id,
+            'solution_date' => now()
         ]);
 
         return redirect()->route('orders.index')
-            ->with('success', 'Service order created successfully.');
+            ->with('success', 'Chamado solucionado!');
     }
 
     /**
@@ -79,12 +96,20 @@ class OrdersController extends Controller
             'category_id' => 'required|exists:categories,id',
             'status_id' => 'required|exists:status,id',
             'due_date' => 'nullable|date',
+            'solution_date' => 'nullable|date',
         ]);
 
-        $order->update($request->all());
+        $data = $request->all();
+
+        $status = Status::find($request->status_id);
+        if ($status->name  == 'Resolvido' && !$order->solution_date) {
+            $data['solution_date'] = now();
+        }
+
+        $order->update($data);
 
         return redirect()->route('orders.index')
-            ->with('success', 'Service order updated successfully.');
+            ->with('success', 'Chamado atualizado!');
     }
 
     /**

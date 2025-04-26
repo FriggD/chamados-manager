@@ -26,12 +26,15 @@ class OrdersFactory extends Factory
      */
     public function definition(): array
     {
+        $status_novo = Status::where('name', 'novo')->first();
+        $collections = Category::all();
+
         return [
             'title' => $this->faker->sentence,
-            'due_date' => $this->faker->dateTimeBetween('now', '+7 days')->format('Y-m-d'),
-            'solution_date' => $this->faker->dateTimeBetween('+8 days', '+14 days')->format('Y-m-d'),
-            'category_id' => $this->faker->numberBetween(1, 4),
-            'status_id' => $this->faker->numberBetween(1, 2),
+            'due_date' => $this->faker->dateTimeBetween('now', '+15 days')->format('Y-m-d'),
+            'solution_date' => null,
+            'category_id' => $collections->random()->id,
+            'status_id' => $status_novo->id,
         ];
     }
 }

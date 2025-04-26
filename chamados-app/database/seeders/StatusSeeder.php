@@ -14,12 +14,16 @@ class StatusSeeder extends Seeder
     public function run(): void
     {
         $statuses = [
+            ['name' => 'Novo'],
             ['name' => 'Pendente'],
             ['name' => 'Resolvido']
         ];
 
         foreach ($statuses as $status) {
-            Status::create($status);
+            $exists = Status::where('name', $status['name'])->exists();
+            if (!$exists) {
+                Status::create($status);
+            }
         }
     }
 }

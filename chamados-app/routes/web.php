@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,9 @@ use App\Http\Controllers\OrdersController;
 |
 */
 
-Route::get('/', function () {
-    return view('orders/index');
-});
+// Set dashboard as the home page
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+// Orders resource routes
 Route::resource('orders', OrdersController::class);
 

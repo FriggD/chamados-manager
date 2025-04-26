@@ -2,13 +2,14 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://cdn.tailwindcss.com"></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <h3 class="float-left">Service Orders</h3>
-                    <a href="{{ route('orders.create') }}" class="btn btn-primary float-right">Create New</a>
+                <div class="card-header" style="display: flex;  justify-content: space-between;">
+                    <h3 class="float-left"> <i class="bi bi-list-check"></i> Chamados</h3>
+                    <a href="{{ route('orders.create') }}" class="btn btn-primary float-right">+ Novo</a>
                 </div>
 
                 <div class="card-body">
@@ -17,17 +18,17 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    
+
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Title</th>
-                                <th>Category</th>
+                                <th>Título</th>
+                                <th>Categoria</th>
                                 <th>Status</th>
-                                <th>Due Date</th>
-                                <th>Created At</th>
-                                <th>Actions</th>
+                                <th>Prazo</th>
+                                <th>Criado em</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,12 +41,14 @@
                                     <td>{{ $order->due_date }}</td>
                                     <td>{{ $order->created_at->format('Y-m-d') }}</td>
                                     <td>
-                                        <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">View</a>
-                                        <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm"><i class="bi bi-search"></i></a>
+                                        @if ($order->status->name !== "Resolvido")
+                                            <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pen-fill"></i></a>
+                                        @endif
                                         <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this order?')">Delete</button>
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this order?')"><i class="bi bi-trash-fill"></i></button>
                                         </form>
                                     </td>
                                 </tr>

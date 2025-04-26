@@ -20,9 +20,11 @@ return new class extends Migration
 
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('status_id')->constrained('status');
+
+            // created_at e updated_at
             $table->timestamps();
 
-            // Add indexes
+            // índices
             $table->index('due_date');
             $table->index(['category_id', 'status_id']);
         });

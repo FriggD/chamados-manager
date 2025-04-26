@@ -48,48 +48,18 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{-- route('service-orders.index') --}}">
-                            <i class="bi bi-list-check"></i> Service Orders
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                            <i class="bi bi-graph-up"></i> Dashboard
                         </a>
                     </li>
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="{{-- route('customers.index') --}}">
-                            <i class="bi bi-people"></i> Customers
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{-- route('reports.index') --}}">
-                            <i class="bi bi-graph-up"></i> Reports
+                        <a class="nav-link" href="{{ route('orders.index') }}">
+                            <i class="bi bi-list-check"></i> Chamados
                         </a>
                     </li>
                 </ul>
 
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ms-auto">
-                    @auth
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                    <i class="bi bi-gear"></i> Settings
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    <i class="bi bi-box-arrow-right"></i> {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @endauth
-                </ul>
             </div>
         </div>
     </nav>
@@ -135,3 +105,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
