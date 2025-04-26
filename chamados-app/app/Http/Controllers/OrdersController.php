@@ -100,6 +100,11 @@ class OrdersController extends Controller
         ]);
 
         $data = $request->all();
+        $order_data = Orders::find($order->id);
+
+        if ($order->solution_date) {
+            return redirect()->route('orders.index')->with('error', 'Chamado solucionados não podem ser editados!');
+        }
 
         $status = Status::find($request->status_id);
         if ($status->name  == 'Resolvido' && !$order->solution_date) {

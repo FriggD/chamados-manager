@@ -68,9 +68,12 @@
 
                     <div class="form-group row mb-0 mt-5">
                         <div class="col-md-6 offset-md-4">
-                            <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-primary">
-                                Editar
-                            </a>
+                            @if($order->status->name !== "Resolvido")
+                                <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-primary">
+                                    Editar
+                                </a>
+                            @endif
+
                             <a href="{{ route('orders.index') }}" class="btn btn-secondary">
                                 Voltar
                             </a>
